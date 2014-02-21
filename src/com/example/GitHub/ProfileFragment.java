@@ -18,9 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -29,35 +27,25 @@ import java.util.concurrent.ExecutionException;
 public class ProfileFragment extends Fragment {
 
     private static final String URL_ACHIEVEMENTS= "http://10.0.2.2:8080/api/getachievements";
-    private Map<String,List<String>> achievements;
+    private String[] descriptions;
+    String[]titles;
+    GridView gridView;
+    String profileUsername;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        try {
-            getUserAchievements();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         addProfilePictureWithListener();
         LinearLayout topVerticalLayout = (LinearLayout)getActivity().findViewById(R.id.profile_layout_vertical_top);
         String usernameLoggedInUser = ((AppContext)getActivity().getApplicationContext()).getUsername();
-        String usernameForProfile = usernameLoggedInUser;
+        profileUsername = usernameLoggedInUser;
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-
         //3different cases for handling arguments:
         //                  -User clicks on "profile" tab --> no argument
         //                  -User clicks on his icon --> argument = logged in user
         //                  -User clicks on friend in friendchat -->argument = friend
         if(getArguments()!=null){
-            usernameForProfile = getArguments().getString(LobbyActivity.KEY_USERNAME_PROFILE);
-            if(usernameForProfile.equals(usernameLoggedInUser)){
+            profileUsername = getArguments().getString(LobbyActivity.KEY_USERNAME_PROFILE);
+            if(profileUsername.equals(usernameLoggedInUser)){
                 //Do something when visting your own profile
-
-
             }
             else {
                 //Do something when visiting someone else profile
@@ -84,12 +72,12 @@ public class ProfileFragment extends Fragment {
 
             }
         }
+        addAchievementsToGridview();
         TextView usernameLabel = new TextView(getActivity());
-        usernameLabel.setText(usernameForProfile);
+        usernameLabel.setText(profileUsername);
         usernameLabel.setBackgroundColor(Color.parseColor("#5E0000"));
         usernameLabel.setTextColor(Color.parseColor("#FDB951"));
         LayoutParams usernameParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        //params.setMargins(0,0,0,20); --> werkt niet vreemd genoeg
         usernameParams.bottomMargin += 20;
         topVerticalLayout.addView(usernameLabel,0,usernameParams);
 
@@ -98,7 +86,6 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        achievements = new HashMap<String, List<String>>();
         return inflater.inflate(R.layout.profile, container, false);
     }
 
@@ -122,7 +109,7 @@ public class ProfileFragment extends Fragment {
     }
     //TODO: een specifieke kleur geven afhankelijk van de status van de gebruiker
     public int getSpecificColor() {
-        return R.color.green;
+        return Color.parseColor("#008000");
     }
     //TODO: specifieke text terugsturen afhankelijk of ingelogde gebruiker bevriend is met gebruiker
     public int getSpecificText() {
@@ -132,20 +119,43 @@ public class ProfileFragment extends Fragment {
 
 
 
-    public void getUserAchievements() throws ExecutionException, InterruptedException, JSONException {
-        List<String>idsList = new ArrayList<String>();
-        List<String>titlesList = new ArrayList<String>();
-        List<String>descriptionsList = new ArrayList<String>();
+    public void addAchievementsToGridview(){
+        //List<Integer>idsList = new ArrayList<Integer>();
         List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
-        urlparams.add(new BasicNameValuePair("username",((AppContext)getActivity().getApplicationContext()).getUsername()));
-        JSONObject data = new JsonController().executePostRequest(urlparams, URL_ACHIEVEMENTS);
-        JSONArray achievementsArray = data.getJSONArray("achievements");
-        if (achievementsArray != null) {
-            for (int i=0;i<achievementsArray.length();i++){
-                System.out.println(achievementsArray.get(i).toString());
-                JSONObject jsonObject = (JSONObject)achievementsArray.get(i);
-                idsList.add();
-            }
+        urlparams.add(new BasicNameValuePair("username",profileUsername));
+        JSONObject data = null;
+        try {
+            data = new JsonController().executePostRequest(urlparams, URL_ACHIEVEMENTS);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+        JSONArray achievementsArray = null;
+        try {
+            achievementsArray = data.getJSONArray("achievements");
+            if (achievementsArray != null) {
+                titles = new String[achievementsArray.length()];
+                descriptions = new String[achievementsArray.length()];
+                for (int i=0;i<achievementsArray.length();i++){
+                    JSONObject jsonObject = (JSONObject)achievementsArray.get(i);
+                    //idsList.add(jsonObject.getInt("id"));
+                    titles[i]= jsonObject.getString("title");
+                    descriptions[i] = jsonObject.getString("description");
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        gridView = (GridView)getActivity().findViewById(R.id.profile_layout_grid_bottom);
+        gridView.setAdapter(new ImageAdapter(getActivity(),titles));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(
+                        getActivity().getApplicationContext(),
+                        descriptions[position], Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

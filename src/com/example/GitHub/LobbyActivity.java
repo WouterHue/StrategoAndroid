@@ -93,24 +93,6 @@ public class LobbyActivity extends Activity {
         if(profileTabFragment == null){
             profileTabFragment = new ProfileFragment();
         }
-
-
-        /*
-        if(profileTagFragment != null && username.equals(((AppContext)getApplicationContext()).getUsername())){
-            return;
-        }
-        else if (lobbyFragment != null) {
-            currentFragment = lobbyFragment;
-        } else if (statsFragment != null) {
-            currentFragment = statsFragment;
-        } else if (gamesFragment != null) {
-            currentFragment = gamesFragment;
-        } else currentFragment = profileFragment;
-        Bundle bundle = new Bundle();
-        bundle.putString(KEY_USERNAME_PROFILE, username);
-        profileFragment.setArguments(bundle);
-        fragmentManager.beginTransaction().replace(currentFragment.getId(), profileFragment,"profile").addToBackStack("profile").commit();
-        */
         //Do nothing when you click on your name while the profilefragment is opened.
         if(!profileTabFragment.isVisible()){
 

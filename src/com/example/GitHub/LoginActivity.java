@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends Activity {
-    private static final String URL = "http://10.0.2.2:8080/rest/verifyuser"; //indien je vanuit emulator verstuurd
-    //private static final String URL = "http://192.168.0.206/verifyUser"; normaal gezien wnr je vanuit device stuurt
+      private static final String URL = "http://10.0.2.2:8080/api/verifyuser"; //indien je vanuit emulator verstuurd
+    //private static final String URL = "http://192.168.0.206/api/verifyuser"; //normaal gezien wnr je vanuit device stuurt
     /**
      * Called when the activity is first created.
      */
@@ -28,14 +28,12 @@ public class LoginActivity extends Activity {
     }
 
     public void checkCredentials(View view) throws ExecutionException, InterruptedException {
-        //wait until the asynctask has finished its doInBackground method.
-
         String username = ((EditText)findViewById(R.id.username)).getText().toString();
         String password= ((EditText)findViewById(R.id.password)).getText().toString();
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
         nameValuePairs.add(new BasicNameValuePair("username", username));
         nameValuePairs.add(new BasicNameValuePair("password", password));
-        JSONObject data = new JsonController().executePostRequest(nameValuePairs,URL);
+        JSONObject data = new JsonController().excecuteRequest(nameValuePairs, URL, "post");
         boolean isVerified = false;
         try {
             isVerified = data.getBoolean("isVerified");

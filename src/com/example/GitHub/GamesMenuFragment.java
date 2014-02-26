@@ -10,7 +10,7 @@ import com.example.Android.R;
 /**
  * Created by wouter on 16/02/14.
  */
-public class GamesFragment extends Fragment {
+public class GamesMenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.games, container, false);

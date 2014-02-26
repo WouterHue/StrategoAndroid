@@ -5,6 +5,7 @@ import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +27,7 @@ import java.util.concurrent.ExecutionException;
 public class LobbyActivity extends Activity {
     private String username;
     public final static String KEY_USERNAME_PROFILE = "com.example.Android.USERNAME_FRIEND";
-    private static final String URL_FRIENDSLIST = "http://10.0.2.2:8080/rest/friendsList";
+    private static final String URL_FRIENDSLIST = "http://10.0.2.2:8080/api/getfriends?";
     private List<String> friendList;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class LobbyActivity extends Activity {
         Tab gamesTab = actionBar.newTab();
         gamesTab.setText("Games");
         //"Games" Is the fragment tag
-        gamesTab.setTabListener(new TabListener<GamesFragment>(this, "games", GamesFragment.class));
+        gamesTab.setTabListener(new TabListener<GamesMenuFragment>(this, "games", GamesMenuFragment.class));
         Tab statsTab = actionBar.newTab();
         statsTab.setText("Stats");
         statsTab.setTabListener(new TabListener<StatsFragment>(this, "stats", StatsFragment.class));
@@ -122,12 +123,17 @@ public class LobbyActivity extends Activity {
     public void getFriendsListFromJson() throws ExecutionException, InterruptedException, JSONException {
         List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
         urlparams.add(new BasicNameValuePair("username",((AppContext)getApplicationContext()).getUsername()));
-        JSONObject data = new JsonController().executePostRequest(urlparams, URL_FRIENDSLIST);
-        JSONArray friendsArray  = data.getJSONArray("friendslist");
+        JSONObject data = new JsonController().excecuteRequest(urlparams, URL_FRIENDSLIST,"get");
+        JSONArray friendsArray  = data.getJSONArray("friends");
         if (friendsArray != null) {
             for (int i=0;i<friendsArray.length();i++){
                 friendList.add(friendsArray.get(i).toString());
             }
         }
+    }
+
+    public void navigateToNewGame(View view) {
+        Intent intent = new Intent(this,GameActivity.class);
+        startActivity(intent);
     }
 }

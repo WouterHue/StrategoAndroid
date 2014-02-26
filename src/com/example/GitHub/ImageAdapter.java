@@ -45,10 +45,10 @@ public class ImageAdapter extends BaseAdapter {
 
             String title = imageTitles[position];
 
-            if (title.equalsIgnoreCase("like a boss")) {
+            if (title.equalsIgnoreCase("minesweeper")) {
                 imageView.setImageResource(R.drawable.acheivements_1);
             }
-            else if(title.equalsIgnoreCase("good start")){
+            else if(title.equalsIgnoreCase("win")){
                 imageView.setImageResource(R.drawable.achievements_2);
             }
         } else {

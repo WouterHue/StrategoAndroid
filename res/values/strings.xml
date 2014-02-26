@@ -13,4 +13,6 @@
     <string name="add_friend">Add friend</string>
     <string name="see_stats">See stats</string>
     <string name="achievement">achievement</string>
+    <string name="tile_taken">tile taken</string>
+    <string name="index_amount_of_pieces">index amount of pieces</string>
 </resources>

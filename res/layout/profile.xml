@@ -14,13 +14,16 @@
                   android:background="#762923"
                   android:padding="15dp"
             >
-
+        <ImageView android:id="@+id/profile_pic"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                />
         <LinearLayout android:id="@+id/profile_layout_vertical_top"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
                       android:layout_marginLeft="10dp"
-                      >
+                >
 
         </LinearLayout>
     </LinearLayout>
@@ -50,7 +53,8 @@
                   android:numColumns="auto_fit"
                   android:gravity="center"
                   android:columnWidth="70dp"
-                  android:stretchMode="columnWidth">
+                  android:stretchMode="columnWidth"
+                >
         </GridView>
     </LinearLayout>
 </LinearLayout>

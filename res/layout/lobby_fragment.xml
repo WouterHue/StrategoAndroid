@@ -17,6 +17,7 @@
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:paddingLeft="2dp"
+            android:onClick="navigateToNewGame"
             />
     <Button android:layout_width="250dp"
             android:layout_height="50dp"

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.LinearLayout.LayoutParams;
@@ -24,16 +26,18 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by wouter on 16/02/14.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements OnClickListener {
 
-    private static final String URL_ACHIEVEMENTS= "http://10.0.2.2:8080/api/getachievements";
+    private static final String URL_ACHIEVEMENTS= "http://10.0.2.2:8080/api/getachievements?";
     private String[] descriptions;
     String[]titles;
+    ImageView profilePic;
     GridView gridView;
+    List<ImageView>avatars;
     String profileUsername;
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        addProfilePictureWithListener();
+        setProfilePicture();
         LinearLayout topVerticalLayout = (LinearLayout)getActivity().findViewById(R.id.profile_layout_vertical_top);
         String usernameLoggedInUser = ((AppContext)getActivity().getApplicationContext()).getUsername();
         profileUsername = usernameLoggedInUser;
@@ -86,26 +90,16 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        avatars = new ArrayList<ImageView>();
         return inflater.inflate(R.layout.profile, container, false);
     }
 
-    private void addProfilePictureWithListener() {
-        LinearLayout topHorizontalLayout = (LinearLayout)getActivity().findViewById(R.id.profile_layout_horizontal_top);
-        ImageView profilePicture = new ImageView(getActivity());
-        profilePicture.setImageResource(R.drawable.maarschalk); //momenteel nog hardcoded, later vervangen door icon uit database
-        topHorizontalLayout.addView(profilePicture, 0);
-        LayoutInflater layoutInflater
-                = (LayoutInflater)getActivity().getBaseContext()
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout popupView = (LinearLayout)layoutInflater.inflate(R.layout.popup_profile_images, null);
-        final PopupWindow popUp = new PopupWindow(popupView,700,700);
-        /*profilePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            popUp.showAtLocation(view, Gravity.CENTER,1,1);
-            }
-        });*/
 
+
+    private void setProfilePicture() {
+        profilePic = (ImageView)getActivity().findViewById(R.id.profile_pic);
+        profilePic.setImageResource(R.drawable.maarschalk); //momenteel nog hardcoded, later vervangen door icon uit database
+        profilePic.setOnClickListener(this);
     }
     //TODO: een specifieke kleur geven afhankelijk van de status van de gebruiker
     public int getSpecificColor() {
@@ -116,16 +110,13 @@ public class ProfileFragment extends Fragment {
         return R.string.friend;
     }
 
-
-
-
     public void addAchievementsToGridview(){
         //List<Integer>idsList = new ArrayList<Integer>();
         List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
         urlparams.add(new BasicNameValuePair("username",profileUsername));
         JSONObject data = null;
         try {
-            data = new JsonController().executePostRequest(urlparams, URL_ACHIEVEMENTS);
+            data = new JsonController().excecuteRequest(urlparams, URL_ACHIEVEMENTS,"get");
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -157,5 +148,58 @@ public class ProfileFragment extends Fragment {
                         descriptions[position], Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void showPopUpWindow(View view){
+        LayoutInflater layoutInflater
+                = (LayoutInflater)getActivity().getBaseContext()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout popupView = (LinearLayout)layoutInflater.inflate(R.layout.popup_profile_images, null);
+        final PopupWindow popUp = new PopupWindow(popupView);
+        TableLayout tblAvatars = (TableLayout)popupView.findViewById(R.id.tbl_avatars);
+        for(int i = 0; i<tblAvatars.getChildCount();i++){
+            TableRow tableRow = (TableRow)tblAvatars.getChildAt(i);
+            for (int j = 0 ; j<tableRow.getChildCount();j++){
+                ImageView avatar = (ImageView)tableRow.getChildAt(j);
+                avatar.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(view.getBackground()==null){
+                            view.setBackgroundResource(R.drawable.avatar_image_border);
+                        }
+                        else view.setBackground(null);
+
+                    }
+                });
+                avatars.add(avatar);
+            }
+        }
+        popUp.showAtLocation(view, Gravity.CENTER,1,1);
+        ImageButton closeButton = (ImageButton) popupView.findViewById(R.id.close_button);
+        ImageButton acceptButton = (ImageButton)popupView.findViewById(R.id.accept_button);
+        closeButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUp.dismiss();
+            }
+        });
+        acceptButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (ImageView avatar : avatars){
+                    if(avatar.getBackground()!=null){
+                        profilePic.setImageDrawable(avatar.getDrawable());
+                        getActivity().getActionBar().setIcon(avatar.getDrawable());
+                        popUp.dismiss();
+                    }
+                }
+            }
+        });
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.profile_pic : showPopUpWindow(view);
+        }
     }
 }

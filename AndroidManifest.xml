@@ -11,12 +11,16 @@
         <activity android:name="com.example.GitHub.LoginActivity"
                   android:icon="@drawable/ic_launcher"
                   android:label="@string/app_name">
+
+        </activity>
+        <activity android:name="com.example.GitHub.LobbyActivity"
+                  android:theme="@style/CustomActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name="com.example.GitHub.LobbyActivity"
-                  android:theme="@style/CustomActionBarTheme"/>
+                  </activity>
+
+        <activity android:name="com.example.GitHub.GameActivity"/>
     </application>
 </manifest>

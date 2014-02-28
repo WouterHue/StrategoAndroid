@@ -139,7 +139,7 @@ public class ProfileFragment extends Fragment implements OnClickListener {
             e.printStackTrace();
         }
         gridView = (GridView)getActivity().findViewById(R.id.profile_layout_grid_bottom);
-        gridView.setAdapter(new ImageAdapter(getActivity(),titles));
+        gridView.setAdapter(new AchievementAdapter(getActivity(),titles));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

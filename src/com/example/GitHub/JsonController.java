@@ -46,7 +46,6 @@ public class JsonController extends AsyncTask<String,Void,JSONObject> {
                 url+=paramString;
                 HttpGet httpGet = new HttpGet(url);
                 response = httpclient.execute(httpGet);
-
             }
             HttpEntity entity = response.getEntity();
             InputStream inputStream = entity.getContent();

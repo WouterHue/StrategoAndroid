@@ -24,21 +24,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e457eba8-85b3-4060-966e-4623a75817de" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/avatar_image_border.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable-hdpi/board_imageviews_border_selectable.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/game_activity.xml" />
-      <change type="MOVED" beforePath="C:\Users\wouter\Documents\GitHub\StrategoAndroid\src\com\example\GitHub\GamesFragment.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/GamesMenuFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/Thumbs.db" afterPath="$PROJECT_DIR$/res/drawable-hdpi/Thumbs.db" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utils/Utils.java" />
+      <change type="MOVED" beforePath="C:\Users\wouter\Documents\GitHub\StrategoAndroid\src\com\example\GitHub\ImageAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/AchievementAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/ImageAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/ImageAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/AppContext.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/AppContext.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/JsonController.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/JsonController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/LobbyActivity.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/LobbyActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/LoginActivity.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/GitHub/ProfileFragment.java" afterPath="$PROJECT_DIR$/src/com/example/GitHub/ProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/lobby_fragment.xml" afterPath="$PROJECT_DIR$/res/layout/lobby_fragment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/popup_profile_images.xml" afterPath="$PROJECT_DIR$/res/layout/popup_profile_images.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/profile.xml" afterPath="$PROJECT_DIR$/res/layout/profile.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/game_activity.xml" afterPath="$PROJECT_DIR$/res/layout/game_activity.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -95,7 +88,23 @@
       </breakpoint>
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java" line="151" class="com.example.GitHub.GameActivity" package="com.example.GitHub">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -107,61 +116,97 @@
     <leaf>
       <file leaf-file-name="lobby_fragment.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/lobby_fragment.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="9" selection-start="330" selection-end="330" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="884">
+            <state line="15" column="40" selection-start="653" selection-end="653" vertical-scroll-proportion="-0.0" vertical-offset="255" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/Utils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="18" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0" vertical-offset="312" max-vertical-offset="782">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="game_activity.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/layout/game_activity.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="0" selection-start="3406" selection-end="3406" vertical-scroll-proportion="-5.1" vertical-offset="969" max-vertical-offset="1428">
+            <state line="27" column="46" selection-start="1341" selection-end="1341" vertical-scroll-proportion="-0.0" vertical-offset="459" max-vertical-offset="1071">
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="android-designer">
-            <state />
+        </entry>
+      </file>
+      <file leaf-file-name="TabListener.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/TabListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="13" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="GameActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="192" column="44" selection-start="8978" selection-end="8978" vertical-scroll-proportion="0.6458333" vertical-offset="2985" max-vertical-offset="3995">
+            <state line="148" column="48" selection-start="6686" selection-end="6686" vertical-scroll-proportion="0.47483587" vertical-offset="1891" max-vertical-offset="3434">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4182#5567#0" expanded="true" />
-                <element signature="e#5552#5553#0" expanded="true" />
-                <element signature="e#8080#8099#0" expanded="true" />
-                <element signature="e#9284#10890#0" expanded="true" />
-                <element signature="e#9847#9866#0" expanded="true" />
-                <element signature="e#9962#9993#0" expanded="true" />
-                <element signature="e#10281#10300#0" expanded="true" />
-                <element signature="e#10412#10443#0" expanded="true" />
-                <element signature="e#10867#10868#0" expanded="true" />
+                <element signature="e#5613#5632#0" expanded="true" />
+                <element signature="e#6002#6017#0" expanded="true" />
+                <element signature="e#6476#6498#0" expanded="true" />
+                <element signature="e#8653#8675#0" expanded="true" />
+                <element signature="e#8915#8934#0" expanded="true" />
+                <element signature="e#9030#9061#0" expanded="true" />
+                <element signature="e#9341#9360#0" expanded="true" />
+                <element signature="e#9472#9503#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="JsonController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/JsonController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="28" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="544">
+            <state line="48" column="13" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0" vertical-offset="491" max-vertical-offset="1105">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/view/View.class">
+      <file leaf-file-name="themes.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/values/themes.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1070" column="19" selection-start="48561" selection-end="48561" vertical-scroll-proportion="0.0" vertical-offset="18190" max-vertical-offset="20213">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="765">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Method.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/lang/reflect/Method.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="28" selection-start="2051" selection-end="2051" vertical-scroll-proportion="0.0" vertical-offset="657" max-vertical-offset="1003">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppContext.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/AppContext.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="7" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
               <folding />
             </state>
           </provider>
@@ -170,43 +215,7 @@
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="64" selection-start="761" selection-end="761" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="408">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewGroup.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/view/ViewGroup.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="282" column="15" selection-start="14394" selection-end="14394" vertical-scroll-proportion="0.0" vertical-offset="4794" max-vertical-offset="6749">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GridLayout.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/widget/GridLayout.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="2023" max-vertical-offset="2125">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Activity.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="16" selection-start="2638" selection-end="2638" vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="7582">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="avatar_image_border.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/avatar_image_border.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="361" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+            <state line="17" column="46" selection-start="817" selection-end="817" vertical-scroll-proportion="-8.6" vertical-offset="74" max-vertical-offset="425">
               <folding />
             </state>
           </provider>
@@ -235,19 +244,22 @@
         <option value="$PROJECT_DIR$/res/layout/profile.xml" />
         <option value="$PROJECT_DIR$/res/layout/popup_profile_images.xml" />
         <option value="$PROJECT_DIR$/src/com/example/GitHub/ProfileFragment.java" />
-        <option value="$PROJECT_DIR$/src/com/example/GitHub/JsonController.java" />
         <option value="$PROJECT_DIR$/src/com/example/GitHub/ImageAdapter.java" />
         <option value="$PROJECT_DIR$/src/com/example/GitHub/gameFragment.java" />
-        <option value="$PROJECT_DIR$/res/layout/lobby_fragment.xml" />
         <option value="$PROJECT_DIR$/res/layout/game_fragment.xml" />
         <option value="$PROJECT_DIR$/src/com/example/GitHub/LobbyActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/GitHub/LoginActivity.java" />
         <option value="$PROJECT_DIR$/res/drawable-hdpi/board_imageviews_border.xml" />
         <option value="$PROJECT_DIR$/res/drawable-hdpi/board_imageviews_border_selectable.xml" />
         <option value="$PROJECT_DIR$/res/drawable-hdpi/board_imageviews_border_not_selectable.xml" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/layout/game_activity.xml" />
+        <option value="$PROJECT_DIR$/res/layout/lobby_fragment.xml" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/com/example/GitHub/AchievementAdapter.java" />
+        <option value="$PROJECT_DIR$/src/com/example/GitHub/AppContext.java" />
+        <option value="$PROJECT_DIR$/src/com/example/GitHub/JsonController.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java" />
       </list>
     </option>
@@ -286,8 +298,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -303,6 +313,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="StrategoAndroid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StrategoAndroid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="StrategoAndroid" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -337,6 +365,10 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -351,13 +383,11 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -612,7 +642,7 @@
     </configuration>
     <configuration default="false" name="Android" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="GitHub" />
-      <option name="ACTIVITY_CLASS" value="com.example.GitHub.LobbyActivity" />
+      <option name="ACTIVITY_CLASS" value="com.example.GitHub.LoginActivity" />
       <option name="MODE" value="specific_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
@@ -676,51 +706,57 @@
       <workItem from="1393317140488" duration="28297000" />
       <workItem from="1393398961109" duration="11265000" />
       <workItem from="1393419890083" duration="3402000" />
-      <workItem from="1393423323594" duration="6971000" />
+      <workItem from="1393423323594" duration="7036000" />
+      <workItem from="1393494463362" duration="7059000" />
+      <workItem from="1393585767728" duration="10602000" />
     </task>
     <task id="LOCAL-00001" summary="Gebruiker kan zijn achievements nu zien">
       <created>1393013943503</created>
       <updated>1393013943503</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="De layout van het spel is volledig in orde. &#10;De functionaliteit voor het blauwe team betreft pionnen op het bord plaatsen werkt ook volledig.&#10;Enkel de functionaliteit voor het rode team moet nog gedaan worden.&#10;">
+      <created>1393451465038</created>
+      <updated>1393451465038</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114558000" />
+    <option name="totallyTimeSpent" value="132284000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="880" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294423" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47341114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294423" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294423" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294423" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="92" width="1352" height="680" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294423" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -748,43 +784,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/board_imageviews_border_selectable.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="62" selection-start="0" selection-end="391" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/TabListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1054">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/ImageAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="68" selection-start="1708" selection-end="1708" vertical-scroll-proportion="0.0" vertical-offset="653" max-vertical-offset="1377" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/achievement_image.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="53" selection-start="887" selection-end="887" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="578">
-          <folding />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/res/layout/stats.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/stats.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LoginActivity.java">
@@ -805,7 +812,10 @@
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="64" selection-start="943" selection-end="943" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="476">
-          <folding />
+          <folding>
+            <element signature="e#452#470#0" expanded="true" />
+            <element signature="e#668#686#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -832,13 +842,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/games.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
@@ -853,13 +863,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="491" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="470">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/spy.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -870,78 +873,57 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/TabListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1054">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/login_button_border.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="428" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/achievement_image.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="53" selection-start="887" selection-end="887" vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="578">
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/stats.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/stats.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="8.6" vertical-offset="430" max-vertical-offset="952">
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/profile.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/profile.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="55" selection-start="894" selection-end="894" vertical-scroll-proportion="7.08" vertical-offset="660" max-vertical-offset="1105">
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/ImageAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="13" selection-start="1717" selection-end="1717" vertical-scroll-proportion="0.67234045" vertical-offset="449" max-vertical-offset="1224">
-          <folding />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/popup_profile_images.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="31" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1139">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/StatsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="8" selection-start="422" selection-end="480" vertical-scroll-proportion="0.40865386" vertical-offset="0" max-vertical-offset="416">
+        <state line="19" column="31" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1139">
           <folding />
         </state>
       </provider>
@@ -951,35 +933,12 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="969" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/JsonController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1339" selection-end="1339" vertical-scroll-proportion="0.0" vertical-offset="218" max-vertical-offset="1122">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/lobby_activity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="15" selection-start="609" selection-end="609" vertical-scroll-proportion="-5.36" vertical-offset="4" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LobbyActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="52" selection-start="5713" selection-end="5713" vertical-scroll-proportion="0.7620192" vertical-offset="1655" max-vertical-offset="2125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="6" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="765">
+        <state line="16" column="15" selection-start="609" selection-end="609" vertical-scroll-proportion="-5.36" vertical-offset="4" max-vertical-offset="374">
           <folding />
         </state>
       </provider>
@@ -996,33 +955,12 @@
     </entry>
     <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="16" selection-start="2638" selection-end="2638" vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="7582">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/lobby_fragment.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="9" selection-start="330" selection-end="330" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
+        <state line="63" column="16" selection-start="2638" selection-end="2638" vertical-scroll-proportion="0.0" vertical-offset="937" max-vertical-offset="7582" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/widget/GridLayout.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1638" max-vertical-offset="2108">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/AppContext.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="493">
-          <folding />
-        </state>
+        <state line="119" column="0" selection-start="5312" selection-end="5312" vertical-scroll-proportion="0.0" vertical-offset="1638" max-vertical-offset="2108" />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/view/ViewGroup.class">
@@ -1032,26 +970,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LobbyFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="75" selection-start="489" selection-end="489" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/games.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
-          <folding />
-        </state>
-      </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/ProfileFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="17" selection-start="4239" selection-end="4239" vertical-scroll-proportion="0.0" vertical-offset="1068" max-vertical-offset="2856">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="432">
           <folding />
         </state>
       </provider>
@@ -1070,20 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/GamesMenuFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="5" selection-start="490" selection-end="490" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="64" selection-start="761" selection-end="761" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="408">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/android/view/View.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1070" column="19" selection-start="48561" selection-end="48561" vertical-scroll-proportion="0.0" vertical-offset="18058" max-vertical-offset="20196">
@@ -1091,37 +1001,162 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/background_gradient.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="28" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+        <state line="9" column="36" selection-start="348" selection-end="355" vertical-scroll-proportion="-6.12" vertical-offset="0" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="470">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/game_activity.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="0" selection-start="3406" selection-end="3406" vertical-scroll-proportion="-5.1" vertical-offset="969" max-vertical-offset="1428">
+        <state line="27" column="46" selection-start="1341" selection-end="1341" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1071">
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="28" selection-start="888" selection-end="888" vertical-scroll-proportion="0.5659574" vertical-offset="6" max-vertical-offset="544">
+          <folding>
+            <element signature="e#452#470#0" expanded="true" />
+            <element signature="e#668#686#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/lobby_fragment.xml">
       <provider editor-type-id="android-designer">
         <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="40" selection-start="653" selection-end="653" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="18" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0" vertical-offset="312" max-vertical-offset="782">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/GamesMenuFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="5" selection-start="490" selection-end="490" vertical-scroll-proportion="0.39787233" vertical-offset="0" max-vertical-offset="470">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LobbyFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="75" selection-start="489" selection-end="489" vertical-scroll-proportion="0.3617021" vertical-offset="0" max-vertical-offset="470">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="1601" selection-end="1601" vertical-scroll-proportion="0.90425533" vertical-offset="0" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/StatsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="5" selection-start="486" selection-end="486" vertical-scroll-proportion="0.39787233" vertical-offset="0" max-vertical-offset="470">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/TabListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/AchievementAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="13" selection-start="1729" selection-end="1729" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/themes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="46" selection-start="817" selection-end="817" vertical-scroll-proportion="-8.6" vertical-offset="74" max-vertical-offset="425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="4" selection-start="856" selection-end="946" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2856">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/LobbyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="52" selection-start="5713" selection-end="5713" vertical-scroll-proportion="5.144847" vertical-offset="125" max-vertical-offset="2125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/AppContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="7" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/School/3de jaar/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-19/android.jar!/java/lang/reflect/Method.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="28" selection-start="2051" selection-end="2051" vertical-scroll-proportion="0.0" vertical-offset="657" max-vertical-offset="1003">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/JsonController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="13" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0" vertical-offset="491" max-vertical-offset="1105">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/GitHub/GameActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="44" selection-start="8978" selection-end="8978" vertical-scroll-proportion="0.6458333" vertical-offset="2985" max-vertical-offset="3995">
+        <state line="148" column="48" selection-start="6686" selection-end="6686" vertical-scroll-proportion="0.47483587" vertical-offset="1891" max-vertical-offset="3434">
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4182#5567#0" expanded="true" />
-            <element signature="e#5552#5553#0" expanded="true" />
-            <element signature="e#8080#8099#0" expanded="true" />
-            <element signature="e#9284#10890#0" expanded="true" />
-            <element signature="e#9847#9866#0" expanded="true" />
-            <element signature="e#9962#9993#0" expanded="true" />
-            <element signature="e#10281#10300#0" expanded="true" />
-            <element signature="e#10412#10443#0" expanded="true" />
-            <element signature="e#10867#10868#0" expanded="true" />
+            <element signature="e#5613#5632#0" expanded="true" />
+            <element signature="e#6002#6017#0" expanded="true" />
+            <element signature="e#6476#6498#0" expanded="true" />
+            <element signature="e#8653#8675#0" expanded="true" />
+            <element signature="e#8915#8934#0" expanded="true" />
+            <element signature="e#9030#9061#0" expanded="true" />
+            <element signature="e#9341#9360#0" expanded="true" />
+            <element signature="e#9472#9503#0" expanded="true" />
           </folding>
         </state>
       </provider>

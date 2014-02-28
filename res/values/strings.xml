@@ -15,4 +15,5 @@
     <string name="achievement">achievement</string>
     <string name="tile_taken">tile taken</string>
     <string name="index_amount_of_pieces">index amount of pieces</string>
+    <string name="resource_name">resource name</string>
 </resources>

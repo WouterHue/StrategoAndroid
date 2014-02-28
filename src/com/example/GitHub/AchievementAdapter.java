@@ -12,11 +12,11 @@ import com.example.Android.R;
 /**
  * Created by wouter on 21/02/14.
  */
-public class ImageAdapter extends BaseAdapter {
+public class AchievementAdapter extends BaseAdapter {
     private Context context;
     private final String[] imageTitles;
 
-    public ImageAdapter(Context context, String[] imageTitles) {
+    public AchievementAdapter(Context context, String[] imageTitles) {
         this.context = context;
         this.imageTitles = imageTitles;
     }

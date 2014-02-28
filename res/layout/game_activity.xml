@@ -6,18 +6,18 @@
               android:orientation="horizontal">
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="match_parent"
-                  android:layout_weight="2"
+                  android:layout_weight="5"
                   android:orientation="vertical"
             >
         <Button android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="ready"
                 android:layout_gravity="center_horizontal"
-                android:onClick="setBlueReady"/>
+                android:onClick="setReady"/>
         <LinearLayout android:layout_width="fill_parent"
                       android:layout_height="match_parent"
                       android:orientation="horizontal">
-            <LinearLayout android:id="@+id/ll_blue_pieces_left"
+            <LinearLayout android:id="@+id/ll_pieces_left"
                           android:layout_width="fill_parent"
                           android:layout_height="match_parent"
                           android:orientation="vertical"
@@ -25,7 +25,7 @@
                           android:layout_marginRight="1dp"
                     >
             </LinearLayout>
-            <LinearLayout android:id="@+id/ll_blue_pieces_right"
+            <LinearLayout android:id="@+id/ll_pieces_right"
                           android:layout_width="fill_parent"
                           android:layout_height="match_parent"
                           android:orientation="vertical"
@@ -34,46 +34,25 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <GridLayout android:id="@+id/board"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:columnCount="10"
-                android:rowCount="10"
-                android:background="@drawable/board"
-                android:paddingLeft="3dp"
-            >
-    </GridLayout>
     <LinearLayout android:layout_width="fill_parent"
                   android:layout_height="match_parent"
-                  android:layout_weight="2"
                   android:orientation="vertical"
-            >
-        <Button android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="ready"
-                android:layout_gravity="center_horizontal"
-                android:onClick="setRedReady"/>
-        <LinearLayout android:layout_width="fill_parent"
-                      android:layout_height="match_parent"
-                      android:orientation="horizontal">
-            <LinearLayout android:id="@+id/ll_red_pieces_left"
-                          android:layout_width="fill_parent"
-                          android:layout_height="match_parent"
-                          android:orientation="vertical"
-                          android:layout_weight="2"
-                          android:layout_marginRight="1dp"
-                    >
-            </LinearLayout>
-            <LinearLayout android:id="@+id/ll_red_pieces_right"
-                          android:layout_width="fill_parent"
-                          android:layout_height="match_parent"
-                          android:orientation="vertical"
-                          android:layout_weight="2">
-
-            </LinearLayout>
-        </LinearLayout>
+                  android:layout_weight="1">
+        <TextView android:id="@+id/commentary_board"
+                android:layout_width="match_parent"
+                  android:layout_height="fill_parent"
+                  android:layout_weight="10"
+                  android:textColor="@color/app_background_light"/>
+        <GridLayout android:id="@+id/board"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:columnCount="10"
+                    android:rowCount="10"
+                    android:background="@drawable/board"
+                    android:paddingLeft="3dp"
+                >
+        </GridLayout>
     </LinearLayout>
-
 
 </LinearLayout>

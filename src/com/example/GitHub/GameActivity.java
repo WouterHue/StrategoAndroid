@@ -258,6 +258,21 @@ public class GameActivity extends Activity {
                 board.addView(tiles[i][j]);
             }
         }
+        for (int i = 0; i < amountOfPieces.length; i++) {
+            amountOfPieces[i] = 0;
+        }
+        for (int i = 6; i < tiles.length; i++) {
+            for (int j = 0; j < tiles[i].length; j++) {
+                if (playerIsBlue) {
+                    tiles[i][j].setImageResource(R.drawable.b1);
+                    tiles[i][j].setTag(R.string.resource_id,R.drawable.b1);
+                }
+                else {
+                    tiles[i][j].setImageResource(R.drawable.r1);
+                    tiles[i][j].setTag(R.string.resource_id,R.drawable.r1);
+                }
+            }
+        }
     }
 
     public void setReady(View view) {

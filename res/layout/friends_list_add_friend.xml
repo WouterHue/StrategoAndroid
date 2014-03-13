@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/friend_list_add_friend"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#5E0000">
+    <ImageButton android:layout_width="wrap_content"
+                 android:layout_height="fill_parent"
+                 android:layout_gravity="center_vertical"
+                 android:layout_marginTop="2dp"
+                 android:layout_marginBottom="2dp"
+                 android:layout_marginRight="15dp"
+                 android:layout_marginLeft="5dp"
+                 android:background="@android:color/transparent"
+                 android:onClick="addFriend"
+                 android:src="@drawable/ic_action_add_person"/>
+
+    <ViewSwitcher android:id="@+id/switcher"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent">
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="@string/add_friend"
+                android:clickable="true"
+                android:onClick="changeToEditText"/>
+
+        <EditText android:id="@+id/txt_add_friend"
+                  android:layout_width="match_parent"
+                  android:layout_height="fill_parent"
+                  android:layout_gravity="center_vertical"
+                  android:textStyle="bold"
+                  android:textSize="15dp"
+                  android:textColor="#FFFFFF"
+                  android:layout_marginTop="2dp"
+                  android:layout_marginBottom="2dp"
+                  android:hint="@string/username"
+                  android:inputType="text"
+                  android:imeOptions="actionDone"
+                />
+    </ViewSwitcher>
+
+</LinearLayout>

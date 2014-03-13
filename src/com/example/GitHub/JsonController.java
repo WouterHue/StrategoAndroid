@@ -29,12 +29,10 @@ public class JsonController extends AsyncTask<String,Void,JSONObject> {
     private List<NameValuePair> urlParams;
     private String url;
     private String type;
-
     @Override
     protected JSONObject doInBackground(String... params) {
         HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response;
-
         try {
             if(type.equalsIgnoreCase("post")){
                 HttpPost httpPost = new HttpPost(url);

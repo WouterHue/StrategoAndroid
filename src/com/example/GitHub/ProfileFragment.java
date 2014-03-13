@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.LinearLayout.LayoutParams;
 import com.example.Android.R;
+import com.example.GitHub.Adapters.AchievementAdapter;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -94,8 +95,6 @@ public class ProfileFragment extends Fragment implements OnClickListener {
         return inflater.inflate(R.layout.profile, container, false);
     }
 
-
-
     private void setProfilePicture() {
         profilePic = (ImageView)getActivity().findViewById(R.id.profile_pic);
         profilePic.setImageResource(R.drawable.maarschalk); //momenteel nog hardcoded, later vervangen door icon uit database
@@ -167,6 +166,7 @@ public class ProfileFragment extends Fragment implements OnClickListener {
                         if(view.getBackground()==null){
                             view.setBackgroundResource(R.drawable.avatar_image_border);
                         }
+
                         else view.setBackground(null);
 
                     }

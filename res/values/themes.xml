@@ -36,5 +36,4 @@
             parent="android:Widget.Holo.ActionBar.TabView">
             <item name="android:background">@drawable/actionbar_tab_indicator</item>
     </style>
-
 </resources>

@@ -1,4 +1,4 @@
-package com.example.GitHub;
+package com.example.GitHub.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

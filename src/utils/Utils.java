@@ -5,6 +5,9 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import com.example.Android.R;
 
 /**
  * Created by wouter on 28/02/14.
@@ -37,4 +40,12 @@ public abstract class Utils {
         }
         return bmOut;
     }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+
+    }
+
+
 }

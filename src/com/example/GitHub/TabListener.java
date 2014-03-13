@@ -1,6 +1,7 @@
 package com.example.GitHub;
 
 import android.app.*;
+import com.example.Android.R;
 
 /**
  * Created by wouter on 16/02/14.
@@ -35,7 +36,8 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 
         if (mFragment == null){
            mFragment = Fragment.instantiate(mActivity, mClass.getName());
-            fragmentTransaction.add(android.R.id.content, mFragment, mTag);
+            //fragmentTransaction.add(android.R.id.content, mFragment, mTag);
+            fragmentTransaction.add(R.id.fragment_container,mFragment,mTag);
         }
         else fragmentTransaction.attach(mFragment);
     }

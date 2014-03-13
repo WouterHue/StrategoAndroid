@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 import com.example.Android.R;
 
 /**
- * Created by wouter on 16/02/14.
+ * Created by wouter on 10/03/14.
  */
-public class StatsFragment extends Fragment {
+public class SearchOpponentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.stats, container, false);
+        return inflater.inflate(R.layout.search_opponent_fragment, container, false);
+    }
+
+    public void searchRandomOpponent(View view) {
+
     }
 }

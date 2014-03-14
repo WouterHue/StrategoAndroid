@@ -7,22 +7,19 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.Android.R;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends KeyboardActivity {
-    private static final String URL = "http://10.0.2.2:8080/api/verifyuser"; //indien je vanuit emulator verstuurd
-   // private static final String URL = "http://84.196.161.180:80/api/verifyuser"; //normaal gezien wnr je vanuit device stuurt
-    /**
-     * Called when the activity is first created.
-     */
+    private static final String URL = "http://10.0.2.2:8080/api/verifyuser";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +40,7 @@ public class LoginActivity extends KeyboardActivity {
     }
 
     public void checkCredentials(View view) {
+        Utils.showDialog(this,"test");
         EditText txtUsername = (EditText)findViewById(R.id.username);
         EditText txtPassword = (EditText)findViewById(R.id.password);
         String username = txtUsername.getText().toString();
@@ -56,11 +54,8 @@ public class LoginActivity extends KeyboardActivity {
             try {
                 data = new JsonController().excecuteRequest(nameValuePairs, URL, "post");
                 isVerified = data.getBoolean("isVerified");
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }catch (JSONException e) {
+            } catch (JSONException e) {
+                Toast.makeText(this,"We're sorry, but we couldn't retrieve the data from the server",Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
             if (isVerified) {
@@ -69,6 +64,9 @@ public class LoginActivity extends KeyboardActivity {
                 String usernameParam = editText.getText().toString();
                 ((AppContext) getApplicationContext()).setUsername(usernameParam);
                 startActivity(intent);
+            }
+            else {
+                Toast.makeText(this,"Username or password incorrect",Toast.LENGTH_LONG).show();
             }
         }
         else {
@@ -83,6 +81,6 @@ public class LoginActivity extends KeyboardActivity {
 
         }
 
-    }
 
+    }
 }

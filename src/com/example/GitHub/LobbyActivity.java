@@ -27,12 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by wouter on 14/02/14.
  */
-public class LobbyActivity extends KeyboardActivity {
+public class LobbyActivity extends KeyboardActivity{
     private String username;
     public final static String KEY_USERNAME_PROFILE = "com.example.Android.USERNAME_FRIEND";
     private static final String URL_FRIENDSLIST = "http://10.0.2.2:8080/api/getFriends?";
@@ -61,13 +60,13 @@ public class LobbyActivity extends KeyboardActivity {
             invitedFriendsAdapter.notifyDataSetChanged();
 
         }
-    };
+    };/*
     private BroadcastReceiver queueReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             searchRandomOpponent(null);
         }
-    };
+    };*/
 
     private FriendListAlarm friendListAlarm;
     private QueueAlarm queueAlarm;
@@ -81,7 +80,7 @@ public class LobbyActivity extends KeyboardActivity {
         username = ((AppContext)getApplicationContext()).getUsername();
         setTitle(username);
         urlparams = new ArrayList<NameValuePair>();
-        urlparams.add(new BasicNameValuePair("username",username));
+        urlparams.add(new BasicNameValuePair("username", username));
         addActionbarWithTabs();
         InitializeDrawerLayout();
         friendListAlarm = new FriendListAlarm();
@@ -91,7 +90,7 @@ public class LobbyActivity extends KeyboardActivity {
         queueIntentFilter = new IntentFilter("polQueue");
         friendListAlarm.setAlarm(this);
         registerReceiver(friendListReceiver,friendListIntentFilter);
-        registerReceiver(queueReceiver,queueIntentFilter);
+        //registerReceiver(queueReceiver, queueIntentFilter);
     }
 
     private void InitializeDrawerLayout() {
@@ -123,22 +122,19 @@ public class LobbyActivity extends KeyboardActivity {
     @Override
     protected void onResume() {
         registerReceiver(friendListReceiver, friendListIntentFilter);
-        registerReceiver(queueReceiver,queueIntentFilter);
+       // registerReceiver(queueReceiver, queueIntentFilter);
         super.onResume();
     }
-
-
 
     @Override
     protected void onPause() {
         unregisterReceiver(friendListReceiver);
-        unregisterReceiver(queueReceiver);
+        //unregisterReceiver(queueReceiver);
         super.onPause();
     }
 
     private void addActionbarWithTabs() {
         ActionBar actionBar = getActionBar();
-        actionBar.setSubtitle("Rank... of ...");
         actionBar.setHomeButtonEnabled(true);
         actionBar.setIcon(R.drawable.maarschalk);
         //sepcify that tabs should be displayed in the action bar
@@ -187,26 +183,19 @@ public class LobbyActivity extends KeyboardActivity {
 
     private void logout() {
         JSONObject data = null;
-        try {
-            data = new JsonController().excecuteRequest(urlparams, URL_LOGOUT,"post");
+        data = new JsonController().excecuteRequest(urlparams, URL_LOGOUT, "post");
             finish();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private void openOrCloseFriendsSideBar() {
         if(drawerLayout.isDrawerOpen(lLDrawer)){
             drawerLayout.closeDrawer(lLDrawer);
         }
-
         else drawerLayout.openDrawer(lLDrawer);
 
     }
 
-    public void goToProfile(View view) {
+    public void openProfile(View view) {
         String usernameFriend = ((TextView)view).getText().toString();
         navigateToProfilePage(usernameFriend);
     }
@@ -243,33 +232,28 @@ public class LobbyActivity extends KeyboardActivity {
                 }
                 Collections.sort(friendList);
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (JSONException e) {
+            Toast.makeText(this,"We're sorry, but we couldn't retrieve the data from the server",Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-
+        ((AppContext)getApplicationContext()).setFriendList(friendList);
     }
 
     public void navigateToNewGame(View view) {
        SearchOpponentFragment searchOpponentFragment = new SearchOpponentFragment();
         getFragmentManager().beginTransaction().replace(R.id.fragment_container,searchOpponentFragment).addToBackStack("opponent").commit();
     }
-
+/*
     public void searchRandomOpponent(View view) {
         try {
             JSONObject data = new JsonController().excecuteRequest(urlparams,URL_ADD_USER_TO_QUEUE,"post");
-            if (data != null) {
-                startGame(data.getString("color"),data.getInt("playerId"),data.getInt("gameId"));
+            int playerId = data.getInt("playerId");
+            if (playerId != -1) {
+                startGame(data.getString("color"),playerId, data.getInt("gameId"));
                 queueAlarm.CancelAlarm(this);
             } else queueAlarm.setAlarm(this);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        }catch (JSONException e) {
+            Toast.makeText(this,"We're sorry, but we couldn't retrieve the data from the server",Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -281,7 +265,7 @@ public class LobbyActivity extends KeyboardActivity {
         intent.putExtra("color",color);
         intent.setClass(this,GameActivity.class);
         startActivity(intent);
-    }
+    }*/
 
 
     public void changeToEditText(final View view) {
@@ -336,11 +320,8 @@ public class LobbyActivity extends KeyboardActivity {
                     toastError.show();
                 }
 
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            }catch (JSONException e) {
+                Toast.makeText(this,"We're sorry, but we couldn't retrieve the data from the server",Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
             urlparams.remove(friendValuePair);

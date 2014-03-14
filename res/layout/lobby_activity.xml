@@ -32,7 +32,7 @@
         <ListView android:id="@+id/drawer_list_bottom"
                   android:layout_width="match_parent"
                   android:layout_height="fill_parent"
-                  android:layout_weight="1"
+                  android:layout_weight="2"
                   android:choiceMode="singleChoice"
                   android:divider="@android:color/darker_gray"
                   android:dividerHeight="0.1dp"

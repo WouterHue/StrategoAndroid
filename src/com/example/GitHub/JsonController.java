@@ -66,11 +66,17 @@ public class JsonController extends AsyncTask<String,Void,JSONObject> {
 
     }
 
-    public JSONObject excecuteRequest(List<NameValuePair> urlParams, String url, String type) throws ExecutionException, InterruptedException {
+    public JSONObject excecuteRequest(List<NameValuePair> urlParams, String url, String type) {
         this.urlParams = urlParams;
         this.url = url;
         this.type = type;
-        return execute().get();
-
+        try {
+            return execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -4,4 +4,5 @@
     <color name="app_background">#5E0000</color>
     <color name="app_background_light">#C4433A</color>
     <color name="selectable_tile">#8024D330</color>
+    <color name="app_orange">#FDB951</color>
 </resources>

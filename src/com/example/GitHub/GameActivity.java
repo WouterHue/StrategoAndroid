@@ -7,13 +7,16 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.*;
 import com.example.Android.R;
+import com.example.GitHub.alarms.EnemyReadyAlarm;
 import com.example.GitHub.alarms.PlayerReadyAlarm;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -23,7 +26,6 @@ import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by wouter on 24/02/14.
@@ -35,6 +37,7 @@ public class GameActivity extends Activity {
     private static final String URL_ENEMY_STATUS= "http://10.0.2.2:8080/api/game/getEnemyStatus?";
     private static final String URL_FIGHT = "http://10.0.2.2:8080/api/game/fight?";
     private static final String URL_MOVE_PIECE = "http://10.0.2.2:8080/api/game/movePiece";
+    private static final String URL_WIN = "http://10.0.2.2:8080/api/game/win";
     private ImageView[][] tiles;
     private int[] piecesResources;
     private ImageView[] pieces;
@@ -44,7 +47,6 @@ public class GameActivity extends Activity {
     private int[] amountOfPieces;
     private boolean playerIsBlue;
     private boolean playerTurn;
-    private boolean gameStarted;
     private int gameId;
     private int playerId;
     private int oldRow = 0;
@@ -52,28 +54,21 @@ public class GameActivity extends Activity {
     private ImageView tempPiece;
     private int marginBottomPiecesImages;
     private IntentFilter playerStatusFilter;
+    private IntentFilter enemyStatusFilter;
     private PlayerReadyAlarm playerReadyAlarm;
+    private EnemyReadyAlarm enemyReadyAlarm;
     private TextView txt_commentary;
     private View viewTurnIndicator;
+    private BroadcastReceiver enemyStatusReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            polEnemyStatusAndGetMoveIfPossible();
+        }
+    };
     private BroadcastReceiver playerStatusReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!gameStarted) {
-                polPLayerStatus();
-            } else polEnemyStatusAndGetMoveIfPossible();
-
-            /*
-            Boolean ready = polPLayerStatus();
-            if (ready) {
-                playerReadyAlarm.CancelAlarm(context);
-                if (!gameStarted) {
-                    placeEnemyPlayerSetup(getEnemyPlayerSetup());
-                } else {
-                    playerTurn = true;
-                    viewTurnIndicator.setBackgroundColor(getResources().getColor(R.color.green));
-                }
-            }
-            */
+            polPLayerStatus();
         }
     };
 
@@ -84,35 +79,17 @@ public class GameActivity extends Activity {
             JSONObject data = new JsonController().excecuteRequest(urlparams,URL_ENEMY_STATUS,"get");
             boolean isReady = data.getBoolean("isReady");
             if (!isReady) {
-                playerReadyAlarm.CancelAlarm(getApplicationContext());
-                setMoveEnemy(data.getInt("oldIndex"), data.getInt("newIndex"));
+                enemyReadyAlarm.cancelAlarm(this);
+                makeMoveEnemy(data.getInt("oldIndex"), data.getInt("newIndex"));
                 playerTurn = true;
                 viewTurnIndicator.setBackgroundColor(getResources().getColor(R.color.green));
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void setMoveEnemy(int oldIndex, int newIndex) {
-        String oldIndexStr  = oldIndex+"";
-        int oldRow = oldIndexStr.charAt(0);
-        int oldColomn = oldIndexStr.charAt(1);
 
-        String newIndexStr  = newIndex+"";
-        int newRow = newIndexStr.charAt(0);
-        int newColoumn = newIndexStr.charAt(1);
-
-        tiles[newRow][newColoumn] = tiles[oldRow][oldColomn];
-        tiles[oldRow][oldColumn].setImageResource(android.R.color.transparent);
-        tiles[oldRow][oldColumn].setTag(R.string.is_piece, false);
-        tiles[oldRow][oldColumn].setTag(R.string.resource_id, android.R.color.transparent);
-
-    }
 
     private String getEnemyPlayerSetup() {
         List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
@@ -121,10 +98,6 @@ public class GameActivity extends Activity {
         try {
             JSONObject data = new JsonController().excecuteRequest(urlparams,URL_START_POSITION,"get");
             return data.getString("pieces");
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -138,13 +111,9 @@ public class GameActivity extends Activity {
             JSONObject data = new JsonController().excecuteRequest(urlparams,URL_PLAYER_STATUS,"get");
             Boolean isReady = data.getBoolean("isReady");
             if (data != null && isReady) {
-                playerReadyAlarm.CancelAlarm(getApplicationContext());
+                playerReadyAlarm.CancelAlarm(this);
                 placeEnemyPlayerSetup(getEnemyPlayerSetup());
             }
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -215,9 +184,12 @@ public class GameActivity extends Activity {
 
     private void initializeComponents() {
         playerStatusFilter = new IntentFilter("getPlayerStatus");
+        enemyStatusFilter = new IntentFilter("enemyStatus");
+        registerReceiver(enemyStatusReceiver,enemyStatusFilter);
+        registerReceiver(playerStatusReceiver,playerStatusFilter);
         playerReadyAlarm = new PlayerReadyAlarm();
+        enemyReadyAlarm = new EnemyReadyAlarm();
         viewTurnIndicator = findViewById(R.id.view_turn_indicator);
-        gameStarted = false;
         txt_commentary = (TextView)findViewById(R.id.commentary_board);
         if (playerIsBlue) {
             piecesResources = new int[]{R.drawable.b11, R.drawable.b10, R.drawable.b9, R.drawable.b8, R.drawable.b7,
@@ -258,21 +230,34 @@ public class GameActivity extends Activity {
                 board.addView(tiles[i][j]);
             }
         }
+/*
         for (int i = 0; i < amountOfPieces.length; i++) {
             amountOfPieces[i] = 0;
         }
+
         for (int i = 6; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
                 if (playerIsBlue) {
-                    tiles[i][j].setImageResource(R.drawable.b1);
-                    tiles[i][j].setTag(R.string.resource_id,R.drawable.b1);
+                    if (i == 6 && j == 5) {
+                        tiles[i][j].setImageResource(R.drawable.b0);
+                        tiles[i][j].setTag(R.string.resource_id, R.drawable.r0);
+                    } else {
+                        tiles[i][j].setImageResource(R.drawable.b1);
+                        tiles[i][j].setTag(R.string.resource_id, R.drawable.b1);
+                    }
                 }
                 else {
-                    tiles[i][j].setImageResource(R.drawable.r1);
-                    tiles[i][j].setTag(R.string.resource_id,R.drawable.r1);
+                    if (i == 6 && j == 5) {
+                        tiles[i][j].setImageResource(R.drawable.r0);
+                        tiles[i][j].setTag(R.string.resource_id, R.drawable.r0);
+                    } else {
+                        tiles[i][j].setImageResource(R.drawable.r1);
+                        tiles[i][j].setTag(R.string.resource_id, R.drawable.r1);
+                    }
+
                 }
             }
-        }
+        }*/
     }
 
     public void setReady(View view) {
@@ -298,14 +283,10 @@ public class GameActivity extends Activity {
             urlparams.add(new BasicNameValuePair("pieces",pieces));
             try {
                 JSONObject data = new JsonController().excecuteRequest(urlparams,URL_TILES,"post");
-                if (data != null && !pieces.isEmpty() && pieces != null) {
-                    String piecesEnemy = data.getString("pieces");
+                String piecesEnemy = data.getString("pieces");
+                if (!piecesEnemy.equals("-1")&& !pieces.isEmpty() && pieces != null) {
                     placeEnemyPlayerSetup(piecesEnemy);
                 } else playerReadyAlarm.setAlarm(this);
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -317,7 +298,6 @@ public class GameActivity extends Activity {
 
 
     private void placeEnemyPlayerSetup(String piecesEnemy) {
-        gameStarted = true;
         ViewSwitcher switcher = (ViewSwitcher) findViewById(R.id.switcher_ready_button);
         switcher.showNext();
         String[]piecesArray = piecesEnemy.split(",");
@@ -338,11 +318,10 @@ public class GameActivity extends Activity {
         }
         if (!playerTurn) {
             viewTurnIndicator.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
-            playerReadyAlarm.setAlarm(this);
+            enemyReadyAlarm.setAlarm(this);
         }
         else{
             viewTurnIndicator.setBackgroundColor(getResources().getColor(R.color.green));
-            playerReadyAlarm.CancelAlarm(this);
         }
         addBoardListener();
     }
@@ -416,13 +395,14 @@ public class GameActivity extends Activity {
                     if (!(Boolean) tiles[row][column].getTag(R.string.is_enemy_piece)) {
                         tiles[row][column].setImageDrawable(tempPiece.getDrawable());
                         tiles[row][column].setTag(R.string.is_piece, true);
+                        tiles[row][column].setTag(R.string.is_enemy_piece,false);
                         tiles[row][column].setTag(R.string.resource_id, tempPiece.getTag(R.string.resource_id));
                         tiles[oldRow][oldColumn].setImageResource(android.R.color.transparent);
                         tiles[oldRow][oldColumn].setTag(R.string.is_piece, false);
                         tiles[oldRow][oldColumn].setTag(R.string.resource_id, android.R.color.transparent);
                         txt_commentary.setText("");
                     } else {
-                        fight(oldRow, oldColumn,row,column);
+                        fight(oldRow, oldColumn,row,column,false);
                     }
                     switchTurnAndMovePiece(oldRow,oldColumn,row,column);
                 } else txt_commentary.setText("Select a valid tile please");
@@ -430,6 +410,29 @@ public class GameActivity extends Activity {
 
         }
 
+    }
+
+    private void makeMoveEnemy(int oldIndex, int newIndex) {
+        int oldMirrorIndex = 99 - oldIndex;
+        int newMirrorIndex = 99 - newIndex;
+
+        String oldIndexStr  = oldMirrorIndex+"";
+        int oldRowEnemy = Character.getNumericValue(oldIndexStr.charAt(0));
+        int oldColumnEnemy = Character.getNumericValue(oldIndexStr.charAt(1));
+
+        String newIndexStr  = newMirrorIndex + "";
+        int newRow = Character.getNumericValue(newIndexStr.charAt(0));
+        int newColumn = Character.getNumericValue(newIndexStr.charAt(1));
+        if (!(Boolean) tiles[newRow][newColumn].getTag(R.string.is_piece)) {
+            tempPiece = tiles[oldRowEnemy][oldColumnEnemy];
+            tiles[newRow][newColumn].setImageDrawable(tempPiece.getDrawable());
+            tiles[newRow][newColumn].setTag(R.string.is_piece, false);
+            tiles[newRow][newColumn].setTag(R.string.is_enemy_piece, true);
+            tiles[newRow][newColumn].setTag(R.string.resource_id, tempPiece.getTag(R.string.resource_id));
+            tiles[oldRowEnemy][oldColumnEnemy].setImageResource(android.R.color.transparent);
+            tiles[oldRowEnemy][oldColumnEnemy].setTag(R.string.is_enemy_piece, false);
+            tiles[oldRowEnemy][oldColumnEnemy].setTag(R.string.resource_id, android.R.color.transparent);
+        }else fight(oldRowEnemy,oldColumnEnemy,newRow,newColumn,true);
     }
 
     private void switchTurnAndMovePiece(int oldRow, int oldColumn, int row, int column) {
@@ -441,17 +444,11 @@ public class GameActivity extends Activity {
         List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
         urlparams.add(new BasicNameValuePair("playerId", playerId + ""));
         urlparams.add(new BasicNameValuePair("index", index + ""));
-        try {
-            JSONObject data = new JsonController().excecuteRequest(urlparams, URL_MOVE_PIECE,"post");
-            playerReadyAlarm.setAlarm(this);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        JSONObject data = new JsonController().excecuteRequest(urlparams, URL_MOVE_PIECE,"post");
+        enemyReadyAlarm.setAlarm(this);
     }
 
-    private void fight(int sourceRow, int sourceColumn, int targetRow, int targetColumn) {
+    private void fight(int sourceRow, int sourceColumn, int targetRow, int targetColumn,boolean isEnemy) {
         String piece = tiles[sourceRow][sourceColumn].getResources().getResourceName((Integer)tiles[sourceRow][sourceColumn].getTag(R.string.resource_id));
         piece = piece.split("/")[1];
         String pieceEnemy = tiles[targetRow][targetColumn].getResources().getResourceName((Integer)tiles[targetRow][targetColumn].getTag(R.string.resource_id));
@@ -467,34 +464,74 @@ public class GameActivity extends Activity {
             if (result == 0) {
                 tiles[targetRow][targetColumn].setImageResource(android.R.color.transparent);
                 tiles[targetRow][targetColumn].setTag(R.string.is_enemy_piece,false);
+                tiles[targetRow][targetColumn].setTag(R.string.is_piece,false);
             }
             // ENEMY FLAG DESTROYED
             else if (result == 2) {
-                endGame();
+                endGame(isEnemy);
             }
             //PLAYER WINS FIGHT
             else if (result == 1) {
-                tiles[targetRow][targetColumn].setTag(R.string.is_enemy_piece, false);
-                tiles[targetRow][targetColumn].setTag(R.string.is_piece, true);
+                if (isEnemy) {
+                    tiles[targetRow][targetColumn].setTag(R.string.is_enemy_piece, true);
+                    tiles[targetRow][targetColumn].setTag(R.string.is_piece, false);
+                    tiles[targetRow][targetColumn].setImageDrawable(tiles[sourceRow][sourceColumn].getDrawable());
+                } else {
+                    tiles[targetRow][targetColumn].setTag(R.string.is_enemy_piece, false);
+                    tiles[targetRow][targetColumn].setTag(R.string.is_piece, true);
+                    tiles[targetRow][targetColumn].setImageResource((Integer) tiles[sourceRow][sourceColumn].getTag(R.string.resource_id));
+                }
                 tiles[targetRow][targetColumn].setTag(R.string.is_allowed_tile, false);
                 tiles[targetRow][targetColumn].setTag(R.string.resource_id, tiles[sourceRow][sourceColumn].getTag(R.string.resource_id));
-                tiles[targetRow][targetColumn].setImageResource((Integer) tiles[sourceRow][sourceColumn].getTag(R.string.resource_id));
             }
             tiles[targetRow][targetColumn].setBackground(null);
             tiles[sourceRow][sourceColumn].setImageResource(android.R.color.transparent);
             tiles[sourceRow][sourceColumn].setTag(R.string.is_piece, false);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            tiles[sourceRow][sourceColumn].setTag(R.string.is_enemy_piece, false);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
-    private void endGame() {
+    private void endGame(boolean isEnemy) {
+        enemyReadyAlarm.cancelAlarm(this);
+        int imageResource;
+        // Show DEFEAT picture
+        if (isEnemy) {
+            imageResource = R.drawable.spy;
+        }
+        //show VICTORY picture
+        else {
+            imageResource = R.drawable.acheivements_1;
+            List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
+            urlparams.add(new BasicNameValuePair("winnerId", playerId+""));
+            JSONObject data = new JsonController().excecuteRequest(urlparams,URL_WIN,"post");
+            showFinishPopUp(imageResource);}
 
+    }
+
+    private void showFinishPopUp(int imageResource) {
+        LinearLayout viewGroup = (LinearLayout)findViewById(R.id.popup);
+        LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout popupView = (LinearLayout)layoutInflater.inflate(R.layout.popop_game_finished, viewGroup);
+        ImageView view = (ImageView)popupView.getChildAt(0);
+        view.setImageResource(imageResource);
+        final PopupWindow popUp = new PopupWindow(this);
+        popUp.setContentView(popupView);
+        popUp.setWidth((int) Utils.convertPixelsToDp(1000, this));
+        popUp.setHeight((int)Utils.convertPixelsToDp(500,this));
+        popUp.showAtLocation(findViewById(R.id.game_activity_layout), Gravity.CENTER,1,1);
+        popUp.setBackgroundDrawable(new BitmapDrawable());
+        Button continueButton = (Button)popupView.findViewById(R.id.continue_button);
+        continueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUp.dismiss();
+                Intent intent = new Intent(getApplicationContext(), LobbyActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void resetAllowedTiles() {
@@ -571,7 +608,7 @@ public class GameActivity extends Activity {
                 tiles[row - 1][column].setImageResource(R.color.selectable_tile);
                 tiles[row - 1][column].setTag(R.string.is_allowed_tile,true);
             } else if ((Boolean) tiles[row - 1][column].getTag(R.string.is_enemy_piece)) {
-                tiles[row - 1][column].setBackgroundResource(R.drawable.board_imageviews_border_enemy);
+                tiles[row - 1][column].setBackgroundColor(getResources().getColor(R.color.app_background));
                 tiles[row - 1][column].setTag(R.string.is_allowed_tile,true);
             }
         }
@@ -581,7 +618,7 @@ public class GameActivity extends Activity {
                 tiles[row + 1][column].setImageResource(R.color.selectable_tile);
                 tiles[row + 1][column].setTag(R.string.is_allowed_tile, true);
             } else if ((Boolean) tiles[row + 1][column].getTag(R.string.is_enemy_piece)) {
-                tiles[row + 1][column].setBackgroundResource(R.drawable.board_imageviews_border_enemy);
+                tiles[row + 1][column].setBackgroundColor(getResources().getColor(R.color.app_background));
                 tiles[row + 1][column].setTag(R.string.is_allowed_tile, true);
             }
         }
@@ -591,7 +628,7 @@ public class GameActivity extends Activity {
                 tiles[row][column + 1].setImageResource(R.color.selectable_tile);
                 tiles[row][column + 1].setTag(R.string.is_allowed_tile,true);
             } else if ((Boolean) tiles[row][column + 1].getTag(R.string.is_enemy_piece)) {
-                tiles[row][column + 1].setBackgroundResource(R.drawable.board_imageviews_border_enemy);
+                tiles[row][column + 1].setBackgroundColor(getResources().getColor(R.color.app_background));
                 tiles[row][column + 1].setTag(R.string.is_allowed_tile,true);
             }
         }
@@ -601,7 +638,7 @@ public class GameActivity extends Activity {
                 tiles[row][column - 1].setImageResource(R.color.selectable_tile);
                 tiles[row][column - 1].setTag(R.string.is_allowed_tile,true);
             } else if ((Boolean) tiles[row][column - 1].getTag(R.string.is_enemy_piece)) {
-                tiles[row][column - 1].setBackgroundResource(R.drawable.board_imageviews_border_enemy);
+                tiles[row][column - 1].setBackgroundColor(getResources().getColor(R.color.app_background));
                 tiles[row][column - 1].setTag(R.string.is_allowed_tile,true);
             }
         }
@@ -644,11 +681,16 @@ public class GameActivity extends Activity {
     }
 
     private boolean makeTileSelectableIfPossible(int rowCounter, int columnCounter) {
+        //if tile is an empty piece, make it selectable
         if (!(Boolean) tiles[rowCounter][columnCounter].getTag(R.string.is_piece) && !(Boolean) tiles[rowCounter][columnCounter].getTag(R.string.is_enemy_piece)
                 && !(Boolean) tiles[rowCounter][columnCounter].getTag(R.string.is_obstacle)) {
             tiles[rowCounter][columnCounter].setImageResource(R.color.selectable_tile);
-            tiles[rowCounter][columnCounter].setTag(R.string.is_allowed_tile,true);
+            tiles[rowCounter][columnCounter].setTag(R.string.is_allowed_tile, true);
             return true;
+            // if tile is an enemy piece
+        } else if ((Boolean) tiles[rowCounter][columnCounter].getTag(R.string.is_enemy_piece)) {
+            tiles[rowCounter][columnCounter].setBackgroundColor(getResources().getColor(R.color.app_background));
+            tiles[rowCounter][columnCounter].setTag(R.string.is_allowed_tile, true);
         }
         return false;
     }
@@ -719,12 +761,14 @@ public class GameActivity extends Activity {
     @Override
     protected void onResume() {
         registerReceiver(playerStatusReceiver, playerStatusFilter);
+        registerReceiver(enemyStatusReceiver,enemyStatusFilter);
         super.onResume();
     }
 
     @Override
     protected void onPause() {
         unregisterReceiver(playerStatusReceiver);
+        unregisterReceiver(enemyStatusReceiver);
         super.onPause();
     }
 

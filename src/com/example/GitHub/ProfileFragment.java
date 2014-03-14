@@ -5,11 +5,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.util.DisplayMetrics;
+import android.view.*;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.LinearLayout.LayoutParams;
 import com.example.Android.R;
@@ -19,17 +17,18 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by wouter on 16/02/14.
  */
 public class ProfileFragment extends Fragment implements OnClickListener {
 
-    private static final String URL_ACHIEVEMENTS= "http://10.0.2.2:8080/api/getachievements?";
+    private static final String URL_ACHIEVEMENTS= "http://10.0.2.2:8080/api/user/getachievements?";
+    private static final String URL_STATS= "http://10.0.2.2:8080/api/user/getStats?";
     private String[] descriptions;
     String[]titles;
     ImageView profilePic;
@@ -77,6 +76,7 @@ public class ProfileFragment extends Fragment implements OnClickListener {
 
             }
         }
+        addStats(view);
         addAchievementsToGridview();
         TextView usernameLabel = new TextView(getActivity());
         usernameLabel.setText(profileUsername);
@@ -87,6 +87,33 @@ public class ProfileFragment extends Fragment implements OnClickListener {
         topVerticalLayout.addView(usernameLabel,0,usernameParams);
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void addStats(View view) {
+        List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
+        urlparams.add(new BasicNameValuePair("username",profileUsername));
+        JSONObject data = null;
+        try {
+            data = new JsonController().excecuteRequest(urlparams, URL_STATS,"get");
+            int myRank = data.getInt("myRank");
+            int wins = data.getInt("wins");
+            int losses = data.getInt("losses");
+            int totalGames = data.getInt("gamesPlayer");
+            int maxRank = data.getInt("maxRank");
+            TextView txtTotalGames = (TextView)view.findViewById(R.id.txt_total_games);
+            txtTotalGames.setText(totalGames+"");
+            TextView txtWins = (TextView)view.findViewById(R.id.txt_wins);
+            txtWins.setText(wins+"");
+            TextView txtLosses = (TextView)view.findViewById(R.id.txt_losses);
+            txtLosses.setText(losses+"");
+            TextView txtRank = (TextView)view.findViewById(R.id.txt_rank);
+            txtRank.setText(myRank+"");
+            TextView txtMaxRank = (TextView)view.findViewById(R.id.txt_max_rank);
+            txtMaxRank.setText(maxRank+"");
+            getActivity().getActionBar().setSubtitle("Rank " + myRank + " of " + maxRank);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -114,13 +141,7 @@ public class ProfileFragment extends Fragment implements OnClickListener {
         List<NameValuePair> urlparams = new ArrayList<NameValuePair>();
         urlparams.add(new BasicNameValuePair("username",profileUsername));
         JSONObject data = null;
-        try {
-            data = new JsonController().excecuteRequest(urlparams, URL_ACHIEVEMENTS,"get");
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        data = new JsonController().excecuteRequest(urlparams, URL_ACHIEVEMENTS,"get");
         JSONArray achievementsArray = null;
         try {
             achievementsArray = data.getJSONArray("achievements");
@@ -150,12 +171,19 @@ public class ProfileFragment extends Fragment implements OnClickListener {
     }
 
     public void showPopUpWindow(View view){
+        LinearLayout viewGroup = (LinearLayout)getActivity().findViewById(R.id.popup_profile);
         LayoutInflater layoutInflater
                 = (LayoutInflater)getActivity().getBaseContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        LinearLayout popupView = (LinearLayout)layoutInflater.inflate(R.layout.popup_profile_images, null);
+        LinearLayout popupView = (LinearLayout)layoutInflater.inflate(R.layout.popup_profile_images, viewGroup);
         final PopupWindow popUp = new PopupWindow(popupView);
-        TableLayout tblAvatars = (TableLayout)popupView.findViewById(R.id.tbl_avatars);
+        popUp.setContentView(popupView);
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+        popUp.setWidth((int) Utils.convertPixelsToDp((outMetrics.widthPixels+20), getActivity()));
+        popUp.setHeight((int) Utils.convertPixelsToDp((outMetrics.widthPixels+20), getActivity()));
+        final TableLayout tblAvatars = (TableLayout)popupView.findViewById(R.id.tbl_avatars);
         for(int i = 0; i<tblAvatars.getChildCount();i++){
             TableRow tableRow = (TableRow)tblAvatars.getChildAt(i);
             for (int j = 0 ; j<tableRow.getChildCount();j++){
@@ -163,11 +191,16 @@ public class ProfileFragment extends Fragment implements OnClickListener {
                 avatar.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(view.getBackground()==null){
+                        if (view.getBackground() == null) {
+                            for (int i = 0; i < tblAvatars.getChildCount(); i++) {
+                                TableRow tableRow = (TableRow)tblAvatars.getChildAt(i);
+                                for (int j = 0 ; j<tableRow.getChildCount();j++){
+                                    ImageView avatar = (ImageView)tableRow.getChildAt(j);
+                                    avatar.setBackground(null);
+                                }
+                            }
                             view.setBackgroundResource(R.drawable.avatar_image_border);
-                        }
-
-                        else view.setBackground(null);
+                        } else view.setBackground(null);
 
                     }
                 });

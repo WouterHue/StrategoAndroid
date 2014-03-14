@@ -13,7 +13,7 @@
             android:text="@string/achievement"
             android:layout_marginBottom="2dp"
             android:textSize="12sp"
-            android:textColor="#FDB951">
+            android:textColor="#FFFFFF">
     </TextView>
 
     <ImageView

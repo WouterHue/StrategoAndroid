@@ -4,6 +4,16 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="In games fragment"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="fill_parent"
+                  android:layout_weight="1">
+    </LinearLayout>
+    <Button android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:text="text"
+            />
+
+
 
 </LinearLayout>

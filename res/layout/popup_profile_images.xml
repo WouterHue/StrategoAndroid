@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/popup_profile"
               android:layout_height="match_parent"
               android:layout_width="match_parent"
               android:orientation="vertical"
-              android:background="@drawable/login_button_border"
+              android:background="#FFFFFF"
         >
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                  android:id="@+id/tbl_avatars"
@@ -12,50 +13,94 @@
                  android:layout_height="fill_parent"
                  android:layout_weight="1">
 
-        <TableRow android:padding="10dp">
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@drawable/spy"/>
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@drawable/spy"/>
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@drawable/spy"/>
-        </TableRow>
-        <TableRow android:padding="10dp">
-            <ImageView android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@drawable/spy"/>
+        <TableRow android:padding="5dp">
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/spy"
+                       android:layout_marginRight="5dp"
 
+                    />
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/maarschalk"
+                       android:layout_marginRight="5dp"/>
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/verkenner"/>
+
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:src="@drawable/luitenant"/>
+        </TableRow>
+        <TableRow android:padding="5dp">
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/kapitein"/>
+
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/vlag"/>
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/bom"/>
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/sergeant"/>
+
+        </TableRow>
+        <TableRow android:padding="5dp">
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/majoor"/>
+
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/generaal"/>
+
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/corporaal"/>
+            <ImageView android:layout_width="50dp"
+                       android:layout_height="50dp"
+                       android:layout_marginRight="5dp"
+                       android:src="@drawable/kolonel"/>
         </TableRow>
     </TableLayout>
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="fill_parent"
                   android:orientation="horizontal"
-                  android:layout_weight="2"
-            android:layout_gravity="center_vertical">
+                  android:layout_weight="3"
+                  android:layout_gravity="center_vertical"
+                  android:padding="5dp">
         <ImageButton android:id="@+id/accept_button"
-                android:layout_width="fill_parent"
-                android:layout_height="75dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_action_done"
-                android:layout_marginRight="10dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/app_background_light"
+                     android:layout_width="fill_parent"
+                     android:layout_height="match_parent"
+                     android:layout_weight="1"
+                     android:src="@drawable/ic_action_done"
+                     android:layout_marginRight="10dp"
+                     android:layout_gravity="center_vertical"
+                     android:background="@color/app_orange"
                 />
         <View android:layout_width="2dp"
               android:layout_height="25dp"
               android:background="@drawable/background_gradient"
               android:layout_gravity="center"/>
         <ImageButton android:id="@+id/close_button"
-                android:layout_width="fill_parent"
-                android:layout_height="75dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_action_remove"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/app_background_light"
+                     android:layout_width="fill_parent"
+                     android:layout_height="match_parent"
+                     android:layout_weight="1"
+                     android:src="@drawable/ic_action_remove"
+                     android:layout_marginLeft="10dp"
+                     android:layout_gravity="center_vertical"
+                     android:background="@color/app_orange"
                 />
     </LinearLayout>
 </LinearLayout>

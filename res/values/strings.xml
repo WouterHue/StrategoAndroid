@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LoginActivity</string>
+    <string name="app_name">Stratego</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Log In</string>
@@ -19,7 +19,13 @@
     <string name="open">open</string>
     <string name="closed">closed</string>
     <string name="is_piece">is piece</string>
+    <string name="finish">CONTINUE</string>
     <string name="is_enemy_piece">is Enemy piece</string>
     <string name="is_obstacle">is obstacle</string>
     <string name="is_allowed_tile">is allowed tile</string>
+    <string name="total_games">Total games</string>
+    <string name="wins">Wins</string>
+    <string name="losses">Losses</string>
+    <string name="rank">Rank</string>
+    <string name="max_rank">Max rank</string>
 </resources>
